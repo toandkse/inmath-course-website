@@ -1,0 +1,64 @@
+<%- include('partials/header', { title: title, user: user, active: active }) %>
+
+<section class="dashboard-panel">
+    <div class="login-card">
+        <h2><%= title %></h2>
+        <form action="<%= action %>" method="POST">
+            <% if (!course) { %>
+                <div class="input-group">
+                    <label for="id">ID khóa học</label>
+                    <input type="text" id="id" name="id" placeholder="ví dụ: 8plus" required>
+                </div>
+            <% } %>
+            <div class="input-group">
+                <label for="title">Tiêu đề khóa học</label>
+                <input type="text" id="title" name="title" value="<%= course ? course.title : '' %>" required>
+            </div>
+            <div class="input-group">
+                <label for="tag">Nhãn</label>
+                <input type="text" id="tag" name="tag" value="<%= course ? course.tag : '' %>" required>
+            </div>
+            <div class="input-group">
+                <label for="icon">Icon</label>
+                <input type="text" id="icon" name="icon" value="<%= course ? course.icon : '' %>" placeholder="ví dụ: 📈" required>
+            </div>
+            <div class="input-group">
+                <label for="summary">Mô tả ngắn</label>
+                <input type="text" id="summary" name="summary" value="<%= course ? course.summary : '' %>" required>
+            </div>
+            <div class="input-group">
+                <label for="details">Chi tiết khóa học</label>
+                <textarea id="details" name="details" rows="5" style="width:100%; padding:16px 18px; border-radius:16px; border:1px solid #dfe6e9;"><%= course ? course.details : '' %></textarea>
+            </div>
+            <div class="input-group">
+                <label for="type">Loại khóa học</label>
+                <input type="text" id="type" name="type" value="<%= course ? course.type : '' %>" required>
+            </div>
+            <div class="input-group">
+                <label for="level">Mức độ</label>
+                <input type="text" id="level" name="level" value="<%= course ? course.level : '' %>" required>
+            </div>
+            <div class="section-title" style="text-align:left; margin-top:30px; margin-bottom:16px;">
+                <h3>Nội dung khóa học</h3>
+                <p>Nhập tối đa 4 chương để hiển thị trên trang chi tiết.</p>
+            </div>
+            <% const chapterList = course && course.chapters ? course.chapters : [{}, {}, {}, {}]; %>
+            <% for (let i = 0; i < 4; i++) { %>
+                <div class="input-group">
+                    <label for="chapterTitle<%= i %>">Tiêu đề chương <%= i + 1 %></label>
+                    <input type="text" id="chapterTitle<%= i %>" name="chapterTitle[]" value="<%= chapterList[i] ? chapterList[i].title : '' %>" placeholder="Chương <%= i + 1 %>" >
+                </div>
+                <div class="input-group">
+                    <label for="chapterDescription<%= i %>">Mô tả chương <%= i + 1 %></label>
+                    <textarea id="chapterDescription<%= i %>" name="chapterDescription[]" rows="3" style="width:100%; padding:16px 18px; border-radius:16px; border:1px solid #dfe6e9;"><%= chapterList[i] ? chapterList[i].description : '' %></textarea>
+                </div>
+            <% } %>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Lưu khóa học</button>
+                <a href="/admin/courses" class="btn-secondary">Hủy</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

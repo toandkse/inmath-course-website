@@ -1,0 +1,34 @@
+<%- include('partials/header', { title: title, user: user, active: active }) %>
+
+<section class="dashboard-panel">
+    <div class="admin-card">
+        <h2>Xin chào, <%= user.name %></h2>
+        <p>Chào mừng bạn đến với trang <%= isAdmin ? 'quản trị viên' : 'học viên' %>. Tại đây bạn có thể xem tổng quan khóa học và truy cập thông tin chi tiết.</p>
+        <% if (isAdmin) { %>
+            <div class="card-actions">
+                <a href="/admin/courses">Quản lý khóa học</a>
+                <a href="/admin/courses/new">Tạo khóa học mới</a>
+            </div>
+        <% } else { %>
+            <div class="section-title" style="text-align:left; margin-top:40px;">
+                <h2>Khóa học dành cho bạn</h2>
+            </div>
+            <div class="course-grid">
+                <% courses.forEach((course, index) => { %>
+                    <a href="/course/<%= course.id %>" class="course-card">
+                        <div class="card-tag"><%= course.tag %></div>
+                        <div class="card-icon icon-<%= index + 1 %>"><%= course.icon %></div>
+                        <h3><%= course.title %></h3>
+                        <p><%= course.summary %></p>
+                        <div class="card-footer">
+                            <span class="view-detail">Xem chi tiết</span>
+                            <span class="arrow">→</span>
+                        </div>
+                    </a>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

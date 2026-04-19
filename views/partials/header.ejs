@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-icon">Σ</span> inMath
+        </div>
+        <ul class="nav-links">
+            <li><a href="/" class="<%= active === 'home' ? 'active' : '' %>">Trang chủ</a></li>
+            <li><a href="/#courses" class="<%= active === 'courses' ? 'active' : '' %>">Khóa học</a></li>
+            <% if (user) { %>
+                <li><a href="/dashboard" class="<%= active === 'dashboard' ? 'active' : '' %>">Dashboard</a></li>
+                <li><a href="/logout" class="btn-contact">Đăng xuất</a></li>
+            <% } else { %>
+                <li><a href="/login" class="btn-contact">Đăng nhập</a></li>
+            <% } %>
+        </ul>
+    </nav>

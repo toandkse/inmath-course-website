@@ -1,0 +1,18 @@
+{
+  "name": "inmath-course",
+  "version": "1.0.0",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

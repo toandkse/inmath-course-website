@@ -1,0 +1,42 @@
+<%- include('partials/header', { title: title, user: user, active: active }) %>
+
+<header>
+    <div class="hero-section">
+        <div class="hero-content">
+            <span class="badge">Học Toán Online</span>
+            <h1>Chinh phục <br><span class="highlight">Các kỳ thi Toán học</span></h1>
+            <p>Nền tảng luyện thi chất lượng giúp bạn nắm trọn kỹ năng giải đề Toán <br> Các kỳ thi TNTHPT, HSA và TSA.</p>
+            <div class="hero-btns">
+                <a href="#courses" class="btn-main">Khám phá ngay</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://t3.ftcdn.net/jpg/04/72/09/24/360_F_472092463_biXCSvYsRVE8S05Ph7LbrxglfDr66MBE.jpg" alt="Minh họa học tập">
+        </div>
+    </div>
+</header>
+
+<main id="courses">
+    <div class="container">
+        <div class="section-title">
+            <h2>Khóa học tiêu biểu</h2>
+            <p>Lộ trình được thiết kế chuyên biệt cho từng mục tiêu điểm số</p>
+        </div>
+        <div class="course-grid">
+            <% courses.forEach((course, index) => { %>
+                <a href="/course/<%= course.id %>" class="course-card">
+                    <div class="card-tag"><%= course.tag %></div>
+                    <div class="card-icon icon-<%= index + 1 %>"><%= course.icon %></div>
+                    <h3><%= course.title %></h3>
+                    <p><%= course.summary %></p>
+                    <div class="card-footer">
+                        <span class="view-detail">Xem chi tiết</span>
+                        <span class="arrow">→</span>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

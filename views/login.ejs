@@ -1,0 +1,26 @@
+<%- include('partials/header', { title: title, user: user, active: active }) %>
+
+<section class="login-section">
+    <div class="login-card">
+        <h2>Đăng nhập</h2>
+        <% if (error) { %>
+            <div class="error-message"><%= error %></div>
+        <% } %>
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <label for="username">Tên đăng nhập</label>
+                <input type="text" id="username" name="username" placeholder="admin hoặc student" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Đăng nhập</button>
+            </div>
+        </form>
+        <p style="margin-top:20px;color:var(--text-light);">Tài khoản mẫu: admin/admin123 hoặc student/user123</p>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

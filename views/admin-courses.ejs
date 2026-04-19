@@ -1,0 +1,30 @@
+<%- include('partials/header', { title: title, user: user, active: active }) %>
+
+<section class="dashboard-panel">
+    <div class="admin-card">
+        <h2>Quản lý khóa học</h2>
+        <p>Thêm, chỉnh sửa hoặc xóa các khóa học hiển thị trên trang chủ.</p>
+        <div class="course-grid" style="margin-top:30px;">
+            <% courses.forEach((course, index) => { %>
+                <div class="detail-card" style="padding: 30px;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                        <h3><%= course.title %></h3>
+                        <span style="background:#f1f2f6; padding:10px 16px; border-radius:14px; font-weight:700;"><%= course.tag %></span>
+                    </div>
+                    <p style="margin: 18px 0; color: var(--text-light);"><%= course.summary %></p>
+                    <div class="card-actions">
+                        <a href="/admin/courses/<%= course.id %>/edit">Chỉnh sửa</a>
+                        <form action="/admin/courses/<%= course.id %>/delete" method="POST" style="display:inline-block;">
+                            <button type="submit">Xóa</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+        <div class="form-actions" style="margin-top:30px;">
+            <a href="/admin/courses/new">Tạo khóa học mới</a>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>
